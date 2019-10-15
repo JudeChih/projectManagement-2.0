@@ -1,0 +1,641 @@
+// 字體大小
+$font_h1:25px;
+$font_h2:20px;
+$font_h3:16px;
+$font_p:14px;
+$font_span:13px;
+$head_height:50px;
+
+// @import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
+// @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+@mixin borderRadius($num){
+	@if $num == top { border-radius:5px 5px 0 0;}
+  @else if $num == bottom { border-radius:0 0 5px 5px;}
+  @else if $num == small { border-radius:3px;}
+  @else { border-radius:5px;}
+}
+@mixin shadow($type){
+	@if $type == y { box-shadow: 0px 3px 3px rgba(15,15,15,0.6);}
+	@else if $type == inset { box-shadow: 0px 0px 5px rgba(15,15,15,1) inset;}
+	@else if $type == inset_light { box-shadow: 0px 0px 10px 2px rgba(15,15,15,0.3) inset;}
+	@else { box-shadow: 0px 0px 10px rgba(15,15,15,0.6);}
+}
+@mixin text_reset{
+	margin:0;
+	padding:0;
+}
+@mixin text_align($type){
+	@if $type == center {text-align:center;}
+	@else if $type == left {text-align:left;}
+	@else if $type == right {text-align:right;}
+}
+@mixin padding_setting($type,$num){
+	@if $type == t_b {padding-top:$num * 10px;padding-bottom:$num * 10px;}
+	@else if $type == l_r {padding-left:$num * 10px;padding-right:$num * 10px;}
+	@else if $type == all {padding:$num * 10px !important;}
+	@else if $type == l {padding-left:$num * 10px;}
+	@else if $type == r {padding-right:$num * 10px;}
+	@else if $type == t {padding-top:$num * 10px;}
+	@else if $type == b {padding-bottom:$num * 10px;}
+}
+@mixin margin_setting($type,$num){
+	@if $type == t_b {margin-top:$num * 10px;margin-bottom:$num * 10px;}
+	@else if $type == l_r {margin-left:$num * 10px;margin-right:$num * 10px;}
+	@else if $type == all {margin:$num * 10px !important;}
+	@else if $type == l {margin-left:$num * 10px;}
+	@else if $type == r {margin-right:$num * 10px;}
+	@else if $type == t {margin-top:$num * 10px;}
+	@else if $type == b {margin-bottom:$num * 10px;}
+}
+@mixin fixed_center{
+	position:fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	margin:auto;
+	z-index:9999;
+}
+
+///////////////// css reset /////////////////
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+a{
+	text-decoration: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+///////////////// end css reset /////////////////
+
+html , body{
+	height:100%;
+	min-width: 1200px;
+	overflow-y: hidden;
+}
+
+html.over_hidden{
+	overflow: hidden;
+}
+
+body{
+	position:relative !important;
+	// min-width:1600px;
+	width:100%;
+	font-family: 'Noto Sans TC','Josefin Sans', sans-serif;
+	h1{	 font-size:$font_h1;}
+	h2{	 font-size:$font_h2;}
+	h3{	 font-size:$font_h3;}
+	p{   font-size:$font_p;}
+	span{font-size:$font_span;}
+
+	//////////////// Login頁面的設定 //////////////////
+	&.login_body{
+		// background-image:url(/image/login_bg.png);
+		// background-repeat: no-repeat;
+		// background-position: center top;
+		background-color:#293251;
+		.container{
+			width:602px;
+			height:261px;
+			position:absolute;
+			margin:auto;
+			top:0;
+			right:0;
+			bottom:0;
+			left:0;
+			// .logo_block{
+			// 	width:375px;
+			// 	height:101px;
+			// 	margin:auto;
+			// 	margin-bottom:50px;
+			// 	background: url(/image/logo.png) no-repeat left top;
+			// }
+			.login_block{
+				position:relative;
+				background-color: #171B31;
+				max-width:602px;
+				height:261px;
+				margin:auto;
+				@include shadow(false);
+				.account_title,.password_title{
+					color:#8386A8;
+				}
+				.account_block{
+					margin-left:50px;
+					padding-top: 40px;
+					.account_title{
+						color:#8386A8;
+						margin-bottom: 10px;
+						font-size:15px;
+					}
+					input{
+						font-size:13px;
+						padding-bottom:10px;
+						width:408px;
+						color:#fff;
+						border:0;
+						border-bottom: 1px solid #fff;
+						background: unset;
+						outline: unset;
+						&::-webkit-input-placeholder{
+							color:#fff;
+						}
+						&.error{
+							border-bottom: 1px solid #ED4783;
+							&::-webkit-input-placeholder{
+								color:#ED4783;
+							}
+						}
+					}
+				}
+				.password_block{
+					margin-left:50px;
+					padding-top:30px;
+					.password_title{
+						color:#8386A8;
+						margin-bottom: 10px;
+						font-size:15px;
+					}
+					input{
+						font-size:13px;
+						padding-bottom:10px;
+						width:408px;
+						color:#fff;
+						border:0;
+						border-bottom: 1px solid #fff;
+						background: unset;
+						outline: unset;
+						&::-webkit-input-placeholder{
+							color:#fff;
+						}
+						&.error{
+							border-bottom: 1px solid #ED4783;
+							&::-webkit-input-placeholder{
+								color:#ED4783;
+							}
+						}
+					}
+				}
+				.keep_login_block{
+					position:absolute;
+					top: 180px;
+					margin-left: 50px;
+				    margin-top: 10px;
+				    font-size: 12px;
+					color:#8386A8;
+					#keep_login{
+						+ label{
+							border-radius:3px;
+							font: normal normal normal 14px/1 FontAwesome;
+						    font-size: inherit;
+						    text-rendering: auto;
+						    -webkit-font-smoothing: antialiased;
+							display: block;
+							width: 15px;
+							height: 15px;
+							cursor: pointer;
+							position: absolute;
+							top: -1px;
+							background: #8386A8;
+						}
+					}
+					#keep_login:checked{
+						+ label:before{
+							display: block;
+							content: "\2714";
+							text-align: center;
+							font-size: 16px;
+							color: white;
+						}
+					}
+					input{
+						visibility: hidden;
+						width: 15px;
+						height: 15px;
+						margin:0;
+					}
+					span{
+						vertical-align: top;
+					    display: inline-block;
+					    margin-left: 3px;
+					}
+				}
+				.btn_login{
+					width:97px;
+					height:261px;
+					position:absolute;
+					right:0;
+					top:0;
+					background-color:#FB5E76;
+					color:#fff;
+					border:0;
+					outline:unset;
+					p{
+						font-size: 20px;
+						margin-top:0;
+						margin-bottom: 8px;
+					}
+					i{
+						font-size:30px;
+					}
+					&:hover{
+						background-color:#D1374F;
+					}
+				}
+				.error_tip{
+				    color: #ED4783;
+				    font-size: 12px;
+				    margin-top: 12px;
+				    width: 408px;
+				    text-align: right;
+				    margin-left: 50px;
+				}
+			}
+		}
+	}
+	//////////////// end Login頁面的設定 //////////////////
+
+
+	#page-header{
+		// height:70px;
+		background-color:#374052;
+		z-index: 99999;
+    	position: relative;
+		.header-wrapper{
+			width:100%;
+			margin:auto;
+			height:100%;
+			display:table;
+			////////////// logo warp /////////////////
+			.logo_wrap{
+				background: url('/image/logo.svg') no-repeat center center;
+				background-size: 67px 48px;
+				width:67px;
+				height:48px;
+				display:table-cell;
+				vertical-align: top;
+				padding:12px 15px 10px 15px;
+			}
+			////////////// end logo warp /////////////////
+
+			////////////// nav warp //////////////////
+			.mainnav_wrap{
+				display:table-cell;
+				vertical-align: top;
+				ul.mainnav_content{
+					font-size:0px;
+					li.nav_item{
+						display:inline-block;
+						vertical-align: top;
+						font-size:14px;
+						text-align:center;
+						transition: 0.2s;
+						width:100px;
+						height:70px;
+						&.nav_hover:hover,&:hover,&.current{
+							a.nav_a{
+								color:#FA4F76;
+								border-bottom:4px solid #FA4F76;
+							}
+						}
+						&.nav_hover:hover{
+							ul.select_wrap{
+								display:block;
+							}
+						}
+						&:last-child{
+							margin-right:0;
+						}
+						a{
+							height:13px;
+							display:block;
+							padding:26px 0 27px 0 ;
+							color:#fff;
+						}
+					}
+				}
+				ul.select_wrap{
+					display:none;
+					li.select_item{
+						&:hover,&.current{
+							a{
+								color:#FA4F76;
+							}
+						}
+						a{
+							padding:15px 0;
+							background-color:#374052;
+						}
+					}
+				}
+			}
+			////////////// end nav warp //////////////////
+
+			////////////// user warp //////////////////
+			.user_wrap{
+				display:table-cell;
+				ul{
+					font-size:0px;
+					float: right;
+					li{
+						position:relative;
+						display:inline-block;
+						vertical-align: top;
+						font-size:26px;
+						text-align:center;
+						transition: 0.2s;
+						width:60px;
+						color:#fff;
+						line-height: 70px;
+						i{
+							cursor:pointer;
+						}
+						&.search_open{
+							width:170px;
+							padding:0 40px 0 10px;
+						    background-color: #4F5A6B;
+						    height:70px;
+						}
+						&:hover{
+							color:#FA4F76;
+						}
+						.btn_close{
+							position:absolute;
+							top:22px;
+							right:17px;
+						}
+						input{
+							color:#fff;
+							width:170px;
+							position:absolute;
+							left:0;
+							top:26px;
+							margin-left:10px;
+							&.notFound{
+								color:#ED4783;
+							}
+							border:0;
+							background: unset;
+							outline: unset;
+							&::-webkit-input-placeholder{
+								color:#8386A8;
+							}
+							&.search_input{
+
+							}
+						}
+					}
+				}
+			}
+			////////////// end user warp //////////////////
+		}
+	}
+	#page-container{
+		.container-wrapper{
+			
+		}
+	}
+	#page-footer{
+		height:50px;
+		footer{
+			@include text_align(center);
+			background-image: linear-gradient(to top,#f8f8f8 0,#f0f0f0 100%);
+			&.login_footer{
+			  	position:fixed;
+			  	bottom:0;
+			  	width:100%;
+			}
+		}
+	}
+
+	.loading_block{
+        position:fixed;
+        z-index:100000;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        background-color:#374052;
+        img{
+        	position:absolute;
+        	top:0;
+	        bottom:0;
+	        left:0;
+	        right:0;
+	        margin:auto;
+        }
+    }
+    .sub_loading_block{
+        position:relative;
+        background-color:#374052;
+        width:100%;
+        height:100%;
+        img{
+        	position:absolute;
+        	top:0;
+	        bottom:0;
+	        left:0;
+	        right:0;
+	        margin:auto;
+        }
+    }
+
+	.notification_wrap{
+		position: fixed;
+		z-index: 100001;
+		right: 15px;
+	    bottom: 15px;
+	    .remove_wrapper{
+			margin-top:5px;
+		    width: 296px;
+		    height: 18px;
+		    border-radius: 6px;
+		    z-index: 100001;
+		    padding: 20px;
+			&.success{
+				background: #57A5EF;
+			}
+			&.failure{
+				background: #ED4783;
+			}
+			i{
+				font-size:20px;
+				color:#fff;
+			}
+			span{
+				font-size: 18px;
+	    		margin-left: 10px;
+	    		color:#fff;
+			}
+		}
+	}
+
+	.toby_style{
+		box-shadow: 0px 0px 14px rgba(100, 100, 100, 0.5);
+    	div{
+    		cursor:pointer;
+    		&:hover{
+    			color:#fff !important;
+    			background:rgb(55, 64, 82) !important;
+    		}
+    		i{
+    			margin-right:10px;
+    		}
+    	}
+    }
+
+	//////////////// general settings //////////////////
+	// element-ui 相關設定
+	.el-upload-list__item{
+		width: auto;
+		display: inline-block;
+		max-width: 50%;
+		margin: 5px !important;
+	}
+	.el-button{
+		margin-left: 10px;
+	}
+
+	// padding 相關設定
+	.p_l{
+		@include padding_setting(l,1.5);
+	}
+	.p_r{
+		@include padding_setting(r,1.5);
+	}
+	.p_t_b{
+		@include padding_setting(t_b,1.5);
+	}
+	.p_l_r{
+		@include padding_setting(l_r,1.5);
+	}
+	.p_l_dis{
+		@include padding_setting(l,0);
+	}
+	.p_r_dis{
+		@include padding_setting(r,0);
+	}
+	.p_l_r_dis{
+		@include padding_setting(l_r,0);
+	}
+	.p_all_dis{
+		@include padding_setting(all,0);
+	}
+
+	// margin 相關設定
+	.m_b_dis{
+		@include margin_setting(b,0);
+	}
+	.m_l_r_dis{
+		@include margin_setting(l_r,0);
+	}
+	.m_b{
+		@include margin_setting(b,1);
+	}
+	.m_r{
+		@include margin_setting(r,1);
+	}
+	.m_l{
+		@include margin_setting(l,1);
+	}
+	.m_l_r{
+		@include margin_setting(l_r,1);
+	}
+
+	// 文字位置
+	.text_align_c{
+		@include text_align(center);
+	}
+	.text_align_l{
+		@include text_align(left);
+	}
+	.text_align_r{
+		@include text_align(right);
+	}
+
+	// 其他設定
+	.dis_none{
+		display:none;
+	}
+	.block_box{
+		height:10px;
+	}
+	//////////////// end general settings //////////////////
+
+	//////////////// RWD settings //////////////////
+	@media only screen and (min-width:768px) {
+
+	}
+	@media only screen and (max-width:767px) {
+
+	}
+	//////////////// end RWD settings //////////////////
+}
+
+//滾動條的設定
+::-webkit-scrollbar {
+      width: 6px;
+} /* this targets the default scrollbar (compulsory) */
+::-webkit-scrollbar-track {
+      background-color: transparent;
+} /* the new scrollbar will have a flat appearance with the set background color */
+::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius:3px;
+} /* this will style the thumb, ignoring the track */
+::-webkit-scrollbar-button {
+      background-color: #7c2929;
+      display:none;
+} /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+::-webkit-scrollbar-corner {
+      background-color: black;
+} /* if both the vertical and the horizontal bars appear, then perhaps the right bottom corner also needs to be styled */
+
+
+
+
+
+
+
+
+

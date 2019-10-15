@@ -1,0 +1,32 @@
+#reminderwrap{
+	pointer-events: none;
+	background: none;
+	width:100%;
+	height:100%;
+	position: absolute;
+	top:0;
+	left:0;
+	padding:20px 0;
+	z-index: 99999;
+	.reminder{
+		background-color:#FAFAFA;
+		border-radius: 3px;
+	    pointer-events: auto;
+	    width: 300px;
+	    margin: auto;
+	    top: auto;
+	    padding: 12px;
+	    margin-top: 10px;
+	    min-height:30px;
+	    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+	    i{
+	    	font-size: 30px;
+		    position: absolute;
+		    color: #FA4F76;
+	    }
+	    p{
+	    	margin-left:40px;
+	    	line-height:20px;
+	    }
+	}
+}
