@@ -13,7 +13,7 @@
     "foundation-sites": "^6.5.0",
     "jquery": "^3.4.1",
     "laravel-mix": "^0.10.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "rightmenu": "^1.1.0",
     "vue": "^2.6.10",
     "vue-html5-editor": "^1.1.1",
